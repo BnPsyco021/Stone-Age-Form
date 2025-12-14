@@ -1,0 +1,287 @@
+:root {
+  --bg: #f4f4f0;
+  --surface: #ffffff;
+  --border: #d0d0c8;
+  --accent: #157f4a;
+  --accent-soft: #daf0e4;
+  --danger: #c0392b;
+  --text-main: #222222;
+  --text-muted: #666666;
+  --income: #1e8449;
+  --expense: #b03a2e;
+  --radius: 10px;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-main);
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Top bar */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.month-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  padding: 4px 8px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+#current-month-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nav-btn {
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+}
+
+.nav-btn:active {
+  background: #e0e0d8;
+}
+
+.top-actions {
+  display: flex;
+  gap: 6px;
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-main);
+}
+
+button.primary {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+button.primary:active {
+  opacity: 0.9;
+}
+
+button.danger {
+  background: #ffffff;
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Summary cards */
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card .label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.card .value {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.card-income .value {
+  color: var(--income);
+}
+
+.card-expense .value {
+  color: var(--expense);
+}
+
+.card-balance .value {
+  color: var(--accent);
+}
+
+/* Table */
+
+.table-wrapper {
+  flex: 1;
+  min-height: 0;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.sheet thead th {
+  position: sticky;
+  top: 0;
+  background: #fafaf6;
+  z-index: 1;
+}
+
+.sheet th,
+.sheet td {
+  border-bottom: 1px solid #e1e1d6;
+  padding: 4px;
+  text-align: left;
+}
+
+.sheet th:last-child,
+.sheet td:last-child {
+  text-align: center;
+}
+
+.sheet thead th {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.sheet tfoot td {
+  font-weight: 600;
+  background: #fafaf6;
+}
+
+#rows-container {
+  display: block;
+  max-height: calc(100vh - 190px);
+  overflow-y: auto;
+}
+
+#rows-container tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.sheet thead tr,
+.sheet tfoot tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Inputs inside table */
+
+.sheet input[type="date"],
+.sheet input[type="text"],
+.sheet input[type="number"],
+.sheet select {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #d8d8cf;
+  padding: 3px 4px;
+  font-size: 0.7rem;
+  font-family: inherit;
+  background: #ffffff;
+}
+
+.sheet input[type="number"] {
+  text-align: right;
+}
+
+.sheet input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.sheet .delete-btn {
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  font-size: 0.9rem;
+  border-color: #e0b4af;
+  color: var(--danger);
+}
+
+/* Small screens layout tweaks */
+
+@media (max-width: 420px) {
+  #app {
+    padding: 8px;
+  }
+
+  .summary {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sheet th:nth-child(3),
+  .sheet td:nth-child(3) {
+    width: 20%;
+  }
+
+  .sheet th:nth-child(2),
+  .sheet td:nth-child(2) {
+    width: 26%;
+  }
+}
+
